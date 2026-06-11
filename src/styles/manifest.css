@@ -1,0 +1,71 @@
+.manifest {
+  position: relative;
+  padding: var(--space-section) var(--gutter);
+  min-height: 80vh;
+  display: grid;
+  align-content: center;
+  gap: 2.5rem;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* portrait emerging from the right edge */
+.manifest__portrait {
+  position: absolute;
+  z-index: 2;
+  right: 50%;
+  bottom: -5%;
+  transform: translateX(50%);
+  height: 80vh;
+  width: auto;
+  object-fit: contain;
+  object-position: top;
+  clip-path: inset(0 0 0 45%);
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.manifest__content {
+  position: relative;
+  z-index: 3;
+  max-width: 72rem;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  gap: 2.5rem;
+}
+
+.manifest__label,
+.services__hint {
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.manifest__label::before,
+.services__hint::before {
+  content: '';
+  display: inline-block;
+  width: 2.4rem;
+  height: 1px;
+  background: var(--magenta);
+  vertical-align: middle;
+  margin-right: 1rem;
+}
+
+.manifest__text {
+  font-family: var(--font-display);
+  font-size: var(--size-manifest);
+  font-weight: 340;
+  line-height: 1.25;
+  letter-spacing: 0.005em;
+  color: var(--champagne);
+  text-wrap: balance;
+}
+
+.manifest__text .word {
+  display: inline-block;
+  color: var(--muted);
+}

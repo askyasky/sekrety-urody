@@ -1,0 +1,161 @@
+.contact {
+  padding: var(--space-section) var(--gutter) calc(var(--space-section) * 0.7);
+  max-width: 84rem;
+  margin: 0 auto;
+}
+
+.contact__kicker {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--muted);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* huge call-to-action headline that fills with magenta around the cursor */
+.contact__big {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+}
+
+.contact__big-text {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: clamp(3.4rem, 13vw, 12rem);
+  font-weight: 340;
+  font-variation-settings: 'opsz' 144, 'SOFT' 60;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.contact__big-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px color-mix(in srgb, var(--champagne) 55%, transparent);
+  transition: -webkit-text-stroke-color 0.5s var(--ease-out);
+}
+
+.contact__big-fill {
+  position: absolute;
+  inset: 0;
+  color: var(--magenta);
+  -webkit-mask-image: radial-gradient(circle 0px at var(--mx, 50%) var(--my, 50%), #000 97%, transparent 100%);
+  mask-image: radial-gradient(circle 0px at var(--mx, 50%) var(--my, 50%), #000 97%, transparent 100%);
+  transition: -webkit-mask-image 0.1s linear;
+}
+
+.contact__big:hover .contact__big-fill,
+.contact__big:focus-visible .contact__big-fill {
+  -webkit-mask-image: radial-gradient(circle var(--mr, 220px) at var(--mx, 50%) var(--my, 50%), #000 60%, transparent 100%);
+  mask-image: radial-gradient(circle var(--mr, 220px) at var(--mx, 50%) var(--my, 50%), #000 60%, transparent 100%);
+}
+
+/* touch devices: solid magenta, no mask games */
+@media (hover: none) {
+  .contact__big-outline { color: var(--magenta); -webkit-text-stroke: 0; }
+  .contact__big-fill { display: none; }
+}
+
+/* info + map */
+.contact__grid {
+  display: grid;
+  grid-template-columns: minmax(16rem, 1fr) 1.4fr;
+  gap: clamp(2.5rem, 6vw, 6rem);
+  margin-top: clamp(3.5rem, 9vh, 6.5rem);
+  align-items: start;
+}
+
+.contact__label {
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 2.4rem 0 0.7rem;
+}
+.contact__label:first-child { margin-top: 0; }
+
+.contact__phone {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  color: var(--champagne);
+  transition: color 0.4s var(--ease-out);
+}
+.contact__phone:hover { color: var(--magenta); }
+
+.contact__address, .contact__hours {
+  font-size: 1.08rem;
+  line-height: 1.75;
+  color: color-mix(in srgb, var(--champagne) 86%, transparent);
+}
+
+.contact__maps-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--rose-soft);
+  border-bottom: 1px solid color-mix(in srgb, var(--rose-soft) 40%, transparent);
+  transition: color 0.35s, border-color 0.35s;
+}
+.contact__maps-link:hover { color: var(--magenta); border-color: var(--magenta); }
+
+.contact__map {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--noir-2);
+  /* duotone the default map tiles into the design */
+  filter: grayscale(1) invert(0.92) sepia(0.14) saturate(2.2) hue-rotate(285deg) brightness(0.8);
+}
+
+.contact__map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* ===== footer ===== */
+.footer {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  padding: 2rem var(--gutter) 2.4rem;
+  border-top: 1px solid color-mix(in srgb, var(--champagne) 10%, transparent);
+}
+
+.footer__brand, .footer__copy { position: relative; z-index: 1; }
+
+.footer__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.footer__mark { width: 16px; height: 36px; }
+
+.footer__wordmark {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+}
+
+.footer__copy {
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+@media (max-width: 860px) {
+  .contact__grid { grid-template-columns: 1fr; }
+  .contact__big-text { white-space: normal; }
+}

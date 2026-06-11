@@ -1,0 +1,23 @@
+:root {
+  /* color */
+  --noir: #0F0A0E;
+  --noir-2: #181018;
+  --champagne: #EFE6D8;
+  --magenta: #C4067E;
+  --rose-soft: #E8A8C8;
+  --muted: #8A7A85;
+
+  /* type */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Figtree', system-ui, sans-serif;
+
+  --size-hero: clamp(3rem, 12vw, 11rem);
+  --size-h2: clamp(2.2rem, 7vw, 5.5rem);
+  --size-manifest: clamp(1.6rem, 4.5vw, 3.6rem);
+
+  /* rhythm */
+  --space-section: clamp(6rem, 14vh, 11rem);
+  --gutter: clamp(1.25rem, 4vw, 4rem);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}

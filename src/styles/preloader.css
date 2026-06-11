@@ -1,0 +1,33 @@
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+}
+
+.preloader__panel {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 51%;
+  background: var(--noir);
+}
+.preloader__panel--left { left: 0; }
+.preloader__panel--right { right: 0; }
+
+.preloader__center {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 1.2rem;
+}
+
+.preloader__logo {
+  height: 180px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* skip on revisit */
+.intro-seen .preloader { display: none; }

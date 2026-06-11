@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sekrety Urody — Studio Kosmetyczne Bełchatów | Manicure, Henna, Zabiegi</title>
+  <meta name="description" content="Sekrety Urody — kameralne studio kosmetyczne w Bełchatowie. Manicure i pedicure, henna brwi, makijaż, peelingi Theo Marvee, zabiegi na twarz, depilacja woskiem. Piłsudskiego 15. Zadzwoń: 577 707 455." />
+  <meta property="og:title" content="Sekrety Urody — Studio Kosmetyczne Bełchatów" />
+  <meta property="og:description" content="Kameralne studio kosmetyczne w Bełchatowie. Manicure, henna, makijaż, zabiegi na twarz. Umów wizytę: 577 707 455." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pl_PL" />
+  <meta property="og:image" content="/assets/og.jpg" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BeautySalon",
+    "name": "Sekrety Urody — Studio Kosmetyczne",
+    "image": "/assets/og.jpg",
+    "telephone": "+48 577 707 455",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Piłsudskiego 15",
+      "addressLocality": "Bełchatów",
+      "postalCode": "97-400",
+      "addressCountry": "PL"
+    },
+    "url": "https://sekrety-urody.pl",
+    "priceRange": "25–250 zł"
+  }
+  </script>
+
+  <script>
+    if (sessionStorage.getItem('su-intro-seen')) document.documentElement.classList.add('intro-seen');
+  </script>
+  <script type="module" src="/src/js/main.js"></script>
+  <link rel="stylesheet" href="/src/styles/main.css" />
+</head>
+<body>
+
+  <!-- ===== Preloader ===== -->
+  <div class="preloader" aria-hidden="true">
+    <div class="preloader__panel preloader__panel--left"></div>
+    <div class="preloader__panel preloader__panel--right"></div>
+    <div class="preloader__center">
+      <img class="preloader__logo" src="/assets/logo-transparent.png" alt="" aria-hidden="true" />
+    </div>
+  </div>
+
+  <!-- Silhouette definition: redrawn from logo as animatable strokes -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <g id="silhouette-paths" stroke="currentColor" stroke-linecap="round" fill="none">
+        <!-- hair sweeps -->
+        <path pathLength="1" stroke-width="4.5" d="M90 36 C 112 12, 154 4, 192 16" />
+        <path pathLength="1" stroke-width="3.8" d="M96 42 C 126 24, 164 26, 192 44" />
+        <path pathLength="1" stroke-width="3.2" d="M101 50 C 128 44, 152 54, 168 72" />
+        <path pathLength="1" stroke-width="3" d="M105 56 C 124 64, 136 82, 138 106" />
+        <!-- face + front body contour (left edge) -->
+        <path pathLength="1" stroke-width="5.5"
+          d="M96 40 C 89 48, 88 56, 93 63 C 95 68, 95 74, 96 80 C 88 90, 82 102, 82 114 C 82 126, 87 138, 87 150 C 79 166, 76 192, 86 218 C 94 244, 92 274, 86 300" />
+        <!-- back body contour (right edge) -->
+        <path pathLength="1" stroke-width="5.5"
+          d="M103 58 C 114 74, 118 94, 115 112 C 113 124, 112 136, 118 148 C 133 164, 139 195, 126 224 C 115 252, 117 280, 105 304" />
+        <!-- arm -->
+        <path pathLength="1" stroke-width="3.6" d="M101 96 C 92 112, 90 130, 97 146" />
+      </g>
+    </defs>
+  </svg>
+
+  <!-- ===== Custom cursor ===== -->
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true">
+    <div class="cursor__dot"></div>
+    <div class="cursor__ring"><span class="cursor__label">odkryj</span></div>
+  </div>
+
+  <!-- ===== Nav ===== -->
+  <header class="nav">
+    <a class="nav__logo" href="#hero" aria-label="Sekrety Urody — początek strony">
+      <img class="nav__logo-img" src="/assets/logo-transparent.png" alt="Sekrety Urody" />
+    </a>
+    <nav class="nav__links" aria-label="Nawigacja">
+      <a href="#uslugi" data-cursor>Usługi</a>
+      <a href="#cennik" data-cursor>Cennik</a>
+      <a href="#galeria" data-cursor>Galeria</a>
+      <a href="#kontakt" data-cursor>Kontakt</a>
+    </nav>
+    <a class="nav__phone" href="tel:+48577707455" data-cursor>577 707 455</a>
+  </header>
+
+  <main>
+    <!-- ===== Hero ===== -->
+    <section class="hero" id="hero">
+      <div class="hero__bg">
+        <canvas class="hero__canvas" aria-hidden="true"></canvas>
+      </div>
+      <div class="hero__inner">
+        <h1 class="hero__title">
+          <span class="hero__line"><span class="hero__word" data-split>Sekrety</span></span>
+          <span class="hero__line"><em class="hero__word" data-split>Urody</em></span>
+        </h1>
+        <p class="hero__kicker">Studio Kosmetyczne · Bełchatów</p>
+        <div class="hero__cta">
+          <a class="btn btn--solid" href="tel:+48577707455" data-magnetic data-cursor>Zadzwoń i umów wizytę</a>
+          <a class="btn btn--ghost" href="#cennik" data-magnetic data-cursor>Zobacz cennik</a>
+        </div>
+      </div>
+      <div class="hero__hand-wrap" aria-hidden="true">
+        <img class="hero__hand" src="/assets/hand.png" alt="" />
+      </div>
+      <div class="hero__bar">
+        <p class="hero__hours">pn–pt 9:00–17:00 · sob 9:00–14:00</p>
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee__track">
+            <span>manicure · henna · makijaż · zabiegi · depilacja · peelingi · </span><span>manicure · henna · makijaż · zabiegi · depilacja · peelingi · </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Manifest ===== -->
+    <section class="manifest" id="manifest">
+      <img class="manifest__portrait" src="/assets/face.png" alt="" aria-hidden="true" />
+      <div class="manifest__content">
+        <p class="manifest__label" data-reveal>o studiu</p>
+        <p class="manifest__text" data-manifest>W kameralnym studiu przy Piłsudskiego pielęgnacja to rytuał, nie usługa. Zamykasz za sobą drzwi, a resztą zajmujemy się my — bez pośpiechu, z uwagą na każdy szczegół.</p>
+        <!-- [WŁAŚCICIELKA MOŻE PODMIENIĆ TREŚĆ] -->
+      </div>
+    </section>
+
+    <!-- ===== Usługi ===== -->
+    <div class="services__head" id="uslugi">
+      <h2 class="services__title" data-reveal>Czego <em>pragniesz?</em></h2>
+      <p class="services__hint" data-reveal>przewiń, by odkryć</p>
+    </div>
+    <section class="services">
+      <div class="services__viewport">
+        <div class="services__track">
+          <article class="service-card">
+            <figure class="service-card__media">
+              <img src="/assets/uslugi/01.jpg" alt="Manicure hybrydowy — stylizacja paznokci" loading="lazy" width="900" height="1100" />
+            </figure>
+            <div class="service-card__meta">
+              <span class="service-card__num">01</span>
+              <h3 class="service-card__name">Manicure <em>&amp;</em> Pedicure</h3>
+              <p class="service-card__desc">Klasyka, hybryda i żel — dłonie i stopy dopięte na ostatni paznokieć.</p>
+              <p class="service-card__price">od 75 zł</p>
+            </div>
+          </article>
+          <article class="service-card">
+            <figure class="service-card__media">
+              <img src="/assets/uslugi/02.jpg" alt="Henna i regulacja brwi" loading="lazy" width="900" height="1100" />
+            </figure>
+            <div class="service-card__meta">
+              <span class="service-card__num">02</span>
+              <h3 class="service-card__name">Henna <em>i</em> brwi</h3>
+              <p class="service-card__desc">Architektura spojrzenia — henna, regulacja i idealnie poprowadzony łuk.</p>
+              <p class="service-card__price">od 30 zł</p>
+            </div>
+          </article>
+          <article class="service-card">
+            <figure class="service-card__media">
+              <img src="/assets/uslugi/03.jpg" alt="Makijaż wieczorowy" loading="lazy" width="900" height="1100" />
+            </figure>
+            <div class="service-card__meta">
+              <span class="service-card__num">03</span>
+              <h3 class="service-card__name">Makijaż</h3>
+              <p class="service-card__desc">Dzienny albo wieczorowy — podkreślamy, niczego nie przykrywamy.</p>
+              <p class="service-card__price">od 130 zł</p>
+            </div>
+          </article>
+          <article class="service-card">
+            <figure class="service-card__media">
+              <img src="/assets/uslugi/04.jpg" alt="Peeling Theo Marvee" loading="lazy" width="900" height="1100" />
+            </figure>
+            <div class="service-card__meta">
+              <span class="service-card__num">04</span>
+              <h3 class="service-card__name">Peelingi <em>Theo Marvee</em></h3>
+              <p class="service-card__desc">Profesjonalne peelingi nowej generacji dla skóry pełnej blasku.</p>
+              <p class="service-card__price">od 220 zł</p>
+            </div>
+          </article>
+          <article class="service-card">
+            <figure class="service-card__media">
+              <img src="/assets/uslugi/05.jpg" alt="Zabieg oczyszczania twarzy" loading="lazy" width="900" height="1100" />
+            </figure>
+            <div class="service-card__meta">
+              <span class="service-card__num">05</span>
+              <h3 class="service-card__name">Zabiegi <em>na twarz</em></h3>
+              <p class="service-card__desc">Kawitacja, mikrodermabrazja, oczyszczanie — głęboka odnowa z serum i maską.</p>
+              <p class="service-card__price">od 220 zł</p>
+            </div>
+          </article>
+          <article class="service-card">
+            <figure class="service-card__media">
+              <img src="/assets/uslugi/06.jpg" alt="Depilacja woskiem" loading="lazy" width="900" height="1100" />
+            </figure>
+            <div class="service-card__meta">
+              <span class="service-card__num">06</span>
+              <h3 class="service-card__name">Depilacja <em>woskiem</em></h3>
+              <p class="service-card__desc">Gładkość na długie tygodnie — szybko, sprawnie i komfortowo.</p>
+              <p class="service-card__price">od 25 zł</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Cennik ===== -->
+    <section class="pricing" id="cennik">
+      <div class="pricing__head">
+        <h2 class="pricing__title" data-reveal>Cennik</h2>
+        <p class="pricing__sub" data-reveal>jak menu — wybierz to, na co masz dziś ochotę</p>
+      </div>
+      <div class="pricing__list"></div>
+      <p class="pricing__fine">Stylizacje po ponad 4 tyg. +20 zł · Naprawa paznokcia 20 zł · Pyłki / ombre 1 kolor 15 zł · Zdobienia 10/20 zł</p>
+    </section>
+
+    <!-- ===== Galeria ===== -->
+    <section class="gallery" id="galeria">
+      <div class="gallery__head">
+        <h2 class="gallery__title" data-reveal>Nasze <em>prace</em></h2>
+      </div>
+      <div class="gallery__grid">
+        <div class="gallery__col" data-speed="-60">
+          <figure class="gallery__item"><img src="/assets/galeria/01.jpg" alt="Stylizacja paznokci — praca studia" loading="lazy" width="900" height="1150" /><figcaption>manicure hybrydowy</figcaption></figure>
+          <figure class="gallery__item"><img src="/assets/galeria/04.jpg" alt="Makijaż wieczorowy — praca studia" loading="lazy" width="900" height="880" /><figcaption>makijaż wieczorowy</figcaption></figure>
+        </div>
+        <div class="gallery__col" data-speed="-130">
+          <figure class="gallery__item"><img src="/assets/galeria/02.jpg" alt="Henna i regulacja brwi — praca studia" loading="lazy" width="900" height="800" /><figcaption>henna brwi</figcaption></figure>
+          <figure class="gallery__item"><img src="/assets/galeria/05.jpg" alt="Pedicure hybrydowy — praca studia" loading="lazy" width="900" height="1200" /><figcaption>pedicure hybrydowy</figcaption></figure>
+        </div>
+        <div class="gallery__col" data-speed="-30">
+          <figure class="gallery__item"><img src="/assets/galeria/03.jpg" alt="Zabieg na twarz — praca studia" loading="lazy" width="900" height="1000" /><figcaption>zabieg na twarz</figcaption></figure>
+          <figure class="gallery__item"><img src="/assets/galeria/06.jpg" alt="Przedłużanie paznokci żelem — praca studia" loading="lazy" width="900" height="760" /><figcaption>przedłużanie żelem</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Kontakt ===== -->
+    <section class="contact" id="kontakt">
+      <p class="contact__kicker" data-reveal>ostatni sekret zdradzimy przez telefon</p>
+      <a class="contact__big" href="tel:+48577707455" aria-label="Umów się — zadzwoń 577 707 455">
+        <span class="contact__big-text" aria-hidden="true">
+          <span class="contact__big-outline">Umów <em>się</em></span>
+          <span class="contact__big-fill">Umów <em>się</em></span>
+        </span>
+      </a>
+      <div class="contact__grid">
+        <div class="contact__info">
+          <p class="contact__label">telefon</p>
+          <a class="contact__phone" href="tel:+48577707455" data-cursor>577 707 455</a>
+
+          <p class="contact__label">adres</p>
+          <p class="contact__address">
+            Piłsudskiego 15<br />97-400 Bełchatów<br />
+            <a class="contact__maps-link" href="https://maps.google.com/?q=Pi%C5%82sudskiego+15,+97-400+Be%C5%82chat%C3%B3w" target="_blank" rel="noopener" data-cursor>zobacz na mapie ↗</a>
+          </p>
+
+          <p class="contact__label">godziny otwarcia</p>
+          <!-- [DO UZUPEŁNIENIA PRZEZ WŁAŚCICIELKĘ] -->
+          <p class="contact__hours">wt–pt 9:00–18:00<br />sob 9:00–14:00</p>
+        </div>
+        <div class="contact__map">
+          <iframe
+            src="https://maps.google.com/maps?q=Pi%C5%82sudskiego%2015%2C%2097-400%20Be%C5%82chat%C3%B3w&z=16&output=embed"
+            title="Mapa dojazdu — Sekrety Urody, Piłsudskiego 15, Bełchatów"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="footer__brand">
+      <img src="/assets/logo-transparent.png" height="52" style="width:auto" alt="" aria-hidden="true" />
+    </div>
+    <p class="footer__copy">© 2026 Sekrety Urody — Studio Kosmetyczne · Piłsudskiego 15, Bełchatów</p>
+  </footer>
+
+</body>
+</html>

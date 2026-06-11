@@ -1,0 +1,143 @@
+.services {
+  position: relative;
+  background: var(--noir-2);
+  padding: 2rem 0 0;
+  min-height: 120vh;
+  overflow: hidden;
+}
+
+.services__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 8vh var(--gutter) 1.5rem;
+  padding-right: calc(var(--gutter) + 4vw);
+  margin-bottom: 6vh;
+  overflow: visible;
+  background: var(--noir-2);
+}
+
+.services__title {
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  color: var(--champagne);
+  overflow: visible;
+}
+
+.services__hint { white-space: nowrap; padding-bottom: 0.8rem; }
+
+.services__viewport { overflow: hidden; }
+
+.services__track {
+  display: flex;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  padding: 0 var(--gutter) clamp(1.5rem, 3vh, 2.5rem);
+  width: max-content;
+  will-change: transform;
+}
+
+.service-card {
+  position: relative;
+  width: clamp(200px, 20vw, 300px);
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+.service-card__media {
+  margin: 0;
+  overflow: hidden;
+  height: 45vh;
+  background: var(--noir);
+  position: relative;
+}
+
+.service-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: center;
+  transition: transform 0.9s var(--ease-out), filter 0.9s var(--ease-out);
+  will-change: transform;
+}
+
+/* ghost layer for RGB-split hover (created in JS) */
+.service-card__ghost {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: screen;
+  opacity: 0;
+  filter: saturate(2.4) hue-rotate(-18deg) brightness(0.8);
+  transform: translate(0, 0) scale(1);
+  transition: transform 0.9s var(--ease-out), opacity 0.6s var(--ease-out);
+  pointer-events: none;
+}
+
+.service-card:hover .service-card__media img { transform: scale(1.06) rotate(0.35deg); }
+.service-card:hover .service-card__ghost {
+  opacity: 0.35;
+  transform: translate(7px, -4px) scale(1.06) rotate(0.35deg);
+}
+
+.service-card__meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 1.1rem;
+  row-gap: 0.3rem;
+  margin-top: 1rem;
+  align-items: baseline;
+  overflow: visible;
+}
+
+.service-card__num {
+  grid-row: 1 / span 3;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--magenta);
+}
+
+.service-card__name {
+  font-size: clamp(1.2rem, 1.7vw, 1.6rem);
+  color: var(--champagne);
+}
+
+.service-card__desc {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.5;
+  max-width: 34ch;
+}
+
+.service-card__price {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--rose-soft);
+}
+
+/* mobile: native swipe carousel */
+@media (max-width: 860px) {
+  .services {
+    padding-top: clamp(4rem, 8vh, 6rem);
+    overflow: visible;
+  }
+  .services__head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9rem;
+  }
+  .services__hint { white-space: normal; padding-bottom: 0; }
+  .services__viewport {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .services__viewport::-webkit-scrollbar { display: none; }
+  .services__track { width: max-content; }
+  .service-card { scroll-snap-align: center; width: min(78vw, 300px); }
+  .service-card__media { height: 52vw; }
+}
