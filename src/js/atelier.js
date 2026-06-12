@@ -3,46 +3,58 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Flip } from 'gsap/Flip';
 
 /**
- * Portfolio works. To add a photo: drop the file in public/assets/galeria
- * (or /uslugi) and add one entry here — category does the rest.
+ * Portfolio works are auto-discovered from src/assets/portfolio/<kategoria>/.
+ * To add a photo: drop a .jpg/.png/.webp into the right category folder and
+ * redeploy — no code change needed. Vite bundles whatever is in there.
  */
-const WORKS = [
-  { src: '/assets/galeria/01.jpg', cat: 'paznokcie', catLabel: 'Paznokcie', label: 'manicure hybrydowy', w: 900, h: 1150 },
-  { src: '/assets/uslugi/02.jpg', cat: 'brwi', catLabel: 'Brwi', label: 'henna i regulacja', w: 900, h: 1100 },
-  { src: '/assets/galeria/04.jpg', cat: 'makijaz', catLabel: 'Makijaż', label: 'makijaż wieczorowy', w: 900, h: 880 },
-  { src: '/assets/galeria/03.jpg', cat: 'twarz', catLabel: 'Twarz', label: 'zabieg na twarz', w: 900, h: 1000 },
-  { src: '/assets/galeria/05.jpg', cat: 'paznokcie', catLabel: 'Paznokcie', label: 'pedicure hybrydowy', w: 900, h: 1200 },
-  { src: '/assets/uslugi/06.jpg', cat: 'depilacja', catLabel: 'Depilacja', label: 'depilacja woskiem', w: 900, h: 1100 },
-  { src: '/assets/galeria/02.jpg', cat: 'brwi', catLabel: 'Brwi', label: 'architektura brwi', w: 900, h: 800 },
-  { src: '/assets/uslugi/03.jpg', cat: 'makijaz', catLabel: 'Makijaż', label: 'makijaż dzienny', w: 900, h: 1100 },
-  { src: '/assets/galeria/06.jpg', cat: 'paznokcie', catLabel: 'Paznokcie', label: 'przedłużanie żelem', w: 900, h: 760 },
-  { src: '/assets/uslugi/04.jpg', cat: 'twarz', catLabel: 'Twarz', label: 'zabieg Theo Marvee', w: 900, h: 1100 },
-  { src: '/assets/uslugi/01.jpg', cat: 'paznokcie', catLabel: 'Paznokcie', label: 'stylizacja klasyczna', w: 900, h: 1100 },
-  { src: '/assets/uslugi/05.jpg', cat: 'twarz', catLabel: 'Twarz', label: 'oczyszczanie wodorowe', w: 900, h: 1100 },
-];
+const FILES = import.meta.glob(
+  '../assets/portfolio/**/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}',
+  { eager: true, query: '?url', import: 'default' }
+);
+
+const CATEGORIES = {
+  paznokcie: 'Paznokcie',
+  brwi: 'Brwi',
+  makijaz: 'Makijaż',
+};
+
+function buildWorks() {
+  return Object.entries(FILES)
+    .map(([path, src]) => {
+      const cat = (path.match(/portfolio\/([^/]+)\//) || [])[1];
+      return { src, cat, catLabel: CATEGORIES[cat] };
+    })
+    .filter((w) => w.catLabel);
+}
 
 export function initAtelier(reduced) {
   const grid = document.querySelector('.atelier__grid');
   if (!grid) return;
 
-  grid.innerHTML = WORKS.map((w) => `
+  const works = buildWorks();
+  const countEl = document.querySelector('.atelier__count-num');
+
+  if (!works.length) {
+    grid.classList.add('atelier__grid--empty');
+    grid.innerHTML = '<p class="atelier__empty">Galeria w przygotowaniu — pierwsze prace pojawią się już wkrótce.</p>';
+    if (countEl) countEl.textContent = '0';
+    return;
+  }
+
+  grid.innerHTML = works.map((w) => `
     <figure class="atelier__item" data-cat="${w.cat}">
-      <div class="atelier__media" style="aspect-ratio: ${w.w} / ${w.h}">
-        <img src="${w.src}" alt="${w.label} — Sekrety Urody" loading="lazy" width="${w.w}" height="${w.h}" />
+      <div class="atelier__media">
+        <img src="${w.src}" alt="${w.catLabel} — Sekrety Urody" loading="lazy" />
       </div>
-      <figcaption class="atelier__cap">
-        <span class="atelier__cap-label">${w.label}</span>
-        <span class="atelier__cap-cat">${w.catLabel}</span>
-      </figcaption>
+      <figcaption class="atelier__cap"><span class="atelier__cap-cat">${w.catLabel}</span></figcaption>
     </figure>`).join('');
 
   const filters = gsap.utils.toArray('.atelier__filter');
-  const countEl = document.querySelector('.atelier__count-num');
   const items = () => gsap.utils.toArray('.atelier__item');
 
   const setCount = (cat) => {
     if (!countEl) return;
-    const n = WORKS.filter((w) => cat === 'all' || w.cat === cat).length;
+    const n = works.filter((w) => cat === 'all' || w.cat === cat).length;
     countEl.textContent = String(n).padStart(2, '0');
   };
   setCount('all');
@@ -73,6 +85,9 @@ export function initAtelier(reduced) {
     }),
   });
 
+  // images have no known dimensions — recalc trigger positions once they load
+  refreshOnImagesLoaded(grid);
+
   bindFilters((cat) => {
     const all = items();
     const state = Flip.getState(all);
@@ -98,4 +113,18 @@ export function initAtelier(reduced) {
       });
     });
   }
+}
+
+function refreshOnImagesLoaded(grid) {
+  const imgs = [...grid.querySelectorAll('img')];
+  let pending = imgs.length;
+  if (!pending) return;
+  const done = () => { if (--pending <= 0) ScrollTrigger.refresh(); };
+  imgs.forEach((img) => {
+    if (img.complete) done();
+    else {
+      img.addEventListener('load', done, { once: true });
+      img.addEventListener('error', done, { once: true });
+    }
+  });
 }
