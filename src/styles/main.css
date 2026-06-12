@@ -2,10 +2,12 @@
 @import './base.css';
 @import './cursor.css';
 @import './preloader.css';
+@import './transition.css';
 @import './nav.css';
 @import './hero.css';
 @import './manifest.css';
 @import './services.css';
 @import './pricing.css';
 @import './gallery.css';
+@import './atelier.css';
 @import './contact.css';

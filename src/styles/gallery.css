@@ -63,6 +63,13 @@
 .gallery__item:hover img { transform: scale(1.05); }
 .gallery__item:hover figcaption { opacity: 1; transform: none; }
 
+.gallery__more {
+  max-width: 80rem;
+  margin: clamp(2.5rem, 6vh, 5rem) auto 0;
+  display: flex;
+  justify-content: center;
+}
+
 @media (max-width: 760px) {
   .gallery__grid { grid-template-columns: repeat(2, 1fr); }
   .gallery__col:nth-child(3) { display: none; }

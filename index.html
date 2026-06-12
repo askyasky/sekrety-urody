@@ -37,11 +37,25 @@
 
   <script>
     if (sessionStorage.getItem('su-intro-seen')) document.documentElement.classList.add('intro-seen');
+    // arriving via the page curtain: skip the preloader, let the curtain reveal instead
+    if (sessionStorage.getItem('su-page-transition')) {
+      document.documentElement.classList.add('transitioning', 'intro-seen');
+      sessionStorage.setItem('su-intro-seen', '1');
+      // failsafe: never leave the page stuck behind the curtain if the JS reveal stalls
+      setTimeout(function () { document.documentElement.classList.remove('transitioning'); }, 2000);
+    }
   </script>
   <script type="module" src="/src/js/main.js"></script>
   <link rel="stylesheet" href="/src/styles/main.css" />
 </head>
 <body>
+
+  <!-- ===== Page transition curtain ===== -->
+  <div class="page-transition" aria-hidden="true">
+    <div class="page-transition__panel page-transition__panel--left"></div>
+    <div class="page-transition__panel page-transition__panel--right"></div>
+    <img class="page-transition__mark" src="/assets/logo-transparent.png" alt="" />
+  </div>
 
   <!-- ===== Preloader ===== -->
   <div class="preloader" aria-hidden="true">
@@ -88,7 +102,7 @@
     <nav class="nav__links" aria-label="Nawigacja">
       <a href="#uslugi" data-cursor>Usługi</a>
       <a href="#cennik" data-cursor>Cennik</a>
-      <a href="#galeria" data-cursor>Galeria</a>
+      <a href="galeria.html" data-cursor>Galeria</a>
       <a href="#kontakt" data-cursor>Kontakt</a>
     </nav>
     <a class="nav__phone" href="tel:+48577707455" data-cursor>577 707 455</a>
@@ -240,6 +254,9 @@
           <figure class="gallery__item"><img src="/assets/galeria/03.jpg" alt="Zabieg na twarz — praca studia" loading="lazy" width="900" height="1000" /><figcaption>zabieg na twarz</figcaption></figure>
           <figure class="gallery__item"><img src="/assets/galeria/06.jpg" alt="Przedłużanie paznokci żelem — praca studia" loading="lazy" width="900" height="760" /><figcaption>przedłużanie żelem</figcaption></figure>
         </div>
+      </div>
+      <div class="gallery__more" data-reveal>
+        <a class="btn btn--ghost" href="galeria.html" data-magnetic data-cursor>Zobacz całą galerię</a>
       </div>
     </section>
 

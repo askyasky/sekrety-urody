@@ -1,0 +1,33 @@
+/* Curtain wipe reused between pages — same vocabulary as the preloader panels */
+.page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 8000;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.page-transition__panel {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 51%;
+  background: var(--noir);
+}
+.page-transition__panel--left { left: 0; transform: translateX(-101%); }
+.page-transition__panel--right { right: 0; transform: translateX(101%); }
+
+.page-transition__mark {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  height: 116px;
+  width: auto;
+  opacity: 0;
+  z-index: 1;
+}
+
+/* set before paint by the inline head script, so the incoming page starts covered */
+.transitioning .page-transition { visibility: visible; }
+.transitioning .page-transition__panel--left { transform: translateX(0); }
+.transitioning .page-transition__panel--right { transform: translateX(0); }
+.transitioning .page-transition__mark { opacity: 1; }

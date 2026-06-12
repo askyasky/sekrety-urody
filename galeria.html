@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galeria prac — Sekrety Urody | Studio Kosmetyczne Bełchatów</title>
+  <meta name="description" content="Portfolio Sekrety Urody — manicure, pedicure, henna brwi, makijaż, zabiegi na twarz i depilacja. Zobacz nasze prace ze studia w Bełchatowie." />
+  <meta property="og:title" content="Galeria prac — Sekrety Urody" />
+  <meta property="og:description" content="Portfolio kameralnego studia kosmetycznego w Bełchatowie. Manicure, henna, makijaż, zabiegi na twarz." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pl_PL" />
+  <meta property="og:image" content="/assets/og.jpg" />
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&display=swap" rel="stylesheet" />
+
+  <script>
+    if (sessionStorage.getItem('su-page-transition')) {
+      document.documentElement.classList.add('transitioning');
+      // failsafe: never leave the page stuck behind the curtain if the JS reveal stalls
+      setTimeout(function () { document.documentElement.classList.remove('transitioning'); }, 2000);
+    }
+  </script>
+  <script type="module" src="/src/js/galeria.js"></script>
+  <link rel="stylesheet" href="/src/styles/main.css" />
+</head>
+<body>
+
+  <!-- ===== Page transition curtain ===== -->
+  <div class="page-transition" aria-hidden="true">
+    <div class="page-transition__panel page-transition__panel--left"></div>
+    <div class="page-transition__panel page-transition__panel--right"></div>
+    <img class="page-transition__mark" src="/assets/logo-transparent.png" alt="" />
+  </div>
+
+  <!-- ===== Custom cursor ===== -->
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true">
+    <div class="cursor__dot"></div>
+    <div class="cursor__ring"><span class="cursor__label">odkryj</span></div>
+  </div>
+
+  <!-- ===== Nav ===== -->
+  <header class="nav">
+    <a class="nav__logo" href="index.html" aria-label="Sekrety Urody — strona główna">
+      <img class="nav__logo-img" src="/assets/logo-transparent.png" alt="Sekrety Urody" />
+    </a>
+    <nav class="nav__links" aria-label="Nawigacja">
+      <a href="index.html#uslugi" data-cursor>Usługi</a>
+      <a href="index.html#cennik" data-cursor>Cennik</a>
+      <a href="galeria.html" data-cursor aria-current="page">Galeria</a>
+      <a href="index.html#kontakt" data-cursor>Kontakt</a>
+    </nav>
+    <a class="nav__phone" href="tel:+48577707455" data-cursor>577 707 455</a>
+  </header>
+
+  <main>
+    <section class="atelier">
+      <div class="atelier__head">
+        <p class="atelier__kicker">Portfolio · Sekrety Urody</p>
+        <h1 class="atelier__title">Nasze <em>prace</em></h1>
+        <p class="atelier__intro">Każde zdjęcie to realna wizyta w studiu przy Piłsudskiego. Wybierz kategorię i obejrzyj to, co robimy najlepiej.</p>
+      </div>
+
+      <div class="atelier__bar">
+        <div class="atelier__filters" role="group" aria-label="Filtruj prace">
+          <button class="atelier__filter is-active" data-filter="all" data-cursor>Wszystkie</button>
+          <button class="atelier__filter" data-filter="paznokcie" data-cursor>Paznokcie</button>
+          <button class="atelier__filter" data-filter="brwi" data-cursor>Brwi</button>
+          <button class="atelier__filter" data-filter="makijaz" data-cursor>Makijaż</button>
+          <button class="atelier__filter" data-filter="twarz" data-cursor>Twarz</button>
+          <button class="atelier__filter" data-filter="depilacja" data-cursor>Depilacja</button>
+        </div>
+        <p class="atelier__count"><span class="atelier__count-num">12</span> prac w galerii</p>
+      </div>
+
+      <div class="atelier__grid"><!-- works injected by atelier.js --></div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="footer__brand">
+      <img src="/assets/logo-transparent.png" height="52" style="width:auto" alt="" aria-hidden="true" />
+    </div>
+    <div class="footer__meta">
+      <a class="footer__social" href="https://www.facebook.com/sekretywbelchatowie?locale=pl_PL" target="_blank" rel="noopener" aria-label="Sekrety Urody na Facebooku" data-cursor>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+          <path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.49-3.92 3.78-3.92 1.1 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.44 2.9h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94z"/>
+        </svg>
+        <span>Facebook</span>
+      </a>
+      <p class="footer__copy">© 2026 Sekrety Urody — Studio Kosmetyczne · Piłsudskiego 15, Bełchatów</p>
+    </div>
+  </footer>
+
+</body>
+</html>
