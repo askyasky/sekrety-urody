@@ -1,4 +1,6 @@
-/* Curtain wipe reused between pages — same vocabulary as the preloader panels */
+/* Curtain wipe reused between pages — same vocabulary as the preloader panels.
+   Driven entirely by CSS transitions toggled from the inline head script, so it
+   never depends on the (heavy) JS bundle being parsed and can't get stuck. */
 .page-transition {
   position: fixed;
   inset: 0;
@@ -12,6 +14,7 @@
   top: 0; bottom: 0;
   width: 51%;
   background: var(--noir);
+  transition: transform 0.75s cubic-bezier(0.76, 0, 0.24, 1);
 }
 .page-transition__panel--left { left: 0; transform: translateX(-101%); }
 .page-transition__panel--right { right: 0; transform: translateX(101%); }
@@ -24,10 +27,20 @@
   width: auto;
   opacity: 0;
   z-index: 1;
+  transition: opacity 0.4s ease;
 }
 
-/* set before paint by the inline head script, so the incoming page starts covered */
-.transitioning .page-transition { visibility: visible; }
-.transitioning .page-transition__panel--left { transform: translateX(0); }
-.transitioning .page-transition__panel--right { transform: translateX(0); }
-.transitioning .page-transition__mark { opacity: 1; }
+/* pt-active = overlay mounted while a transition is in flight (in or out) */
+.pt-active .page-transition { visibility: visible; pointer-events: all; }
+
+/* pt-cover = panels meet in the middle and the logo shows.
+   Set before first paint on the incoming page (so it renders already covered),
+   then removed a couple of frames later to play the reveal. */
+.pt-cover .page-transition__panel--left { transform: translateX(0); }
+.pt-cover .page-transition__panel--right { transform: translateX(0); }
+.pt-cover .page-transition__mark { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition__panel,
+  .page-transition__mark { transition-duration: 0.01ms; }
+}

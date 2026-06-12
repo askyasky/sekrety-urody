@@ -12,7 +12,6 @@ import { initPricing } from './pricing.js';
 import { initGallery } from './gallery.js';
 import { initContact } from './contact.js';
 import { initNav } from './nav.js';
-import { initTransition } from './transition.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,7 +29,6 @@ if (!reduced) {
 initCursor();
 initMagnetic();
 initNav();
-initTransition();
 initHero(reduced);
 initPreloader(reduced);
 initReveals(reduced);

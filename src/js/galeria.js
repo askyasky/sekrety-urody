@@ -5,7 +5,6 @@ import Lenis from 'lenis';
 import { initCursor } from './cursor.js';
 import { initMagnetic } from './magnetic.js';
 import { initNav } from './nav.js';
-import { initTransition } from './transition.js';
 import { initAtelier } from './atelier.js';
 
 gsap.registerPlugin(ScrollTrigger, Flip);
@@ -24,7 +23,6 @@ if (!reduced) {
 initCursor();
 initMagnetic();
 initNav();
-initTransition();
 initAtelier(reduced);
 
 document.fonts.ready.then(() => ScrollTrigger.refresh());

@@ -36,14 +36,45 @@
   </script>
 
   <script>
-    if (sessionStorage.getItem('su-intro-seen')) document.documentElement.classList.add('intro-seen');
-    // arriving via the page curtain: skip the preloader, let the curtain reveal instead
-    if (sessionStorage.getItem('su-page-transition')) {
-      document.documentElement.classList.add('transitioning', 'intro-seen');
-      sessionStorage.setItem('su-intro-seen', '1');
-      // failsafe: never leave the page stuck behind the curtain if the JS reveal stalls
-      setTimeout(function () { document.documentElement.classList.remove('transitioning'); }, 2000);
-    }
+    /* Page curtain — handled inline (not in the JS bundle) so it always plays,
+       even before the heavy modules parse, and can never get stuck mid-reveal. */
+    (function () {
+      var de = document.documentElement;
+      if (sessionStorage.getItem('su-intro-seen')) de.classList.add('intro-seen');
+
+      // arriving via the curtain: render already covered, skip preloader, then reveal
+      if (sessionStorage.getItem('su-page-transition')) {
+        sessionStorage.removeItem('su-page-transition');
+        sessionStorage.setItem('su-intro-seen', '1');
+        de.classList.add('intro-seen', 'pt-active', 'pt-cover');
+        // let the covered state paint for two frames, then slide the panels away
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            de.classList.remove('pt-cover');
+            setTimeout(function () { de.classList.remove('pt-active'); }, 1000);
+          });
+        });
+      }
+
+      // outgoing: cover the screen before navigating to another same-origin page
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest ? e.target.closest('a') : null;
+        if (!a) return;
+        var href = a.getAttribute('href');
+        if (!href || href.charAt(0) === '#' || href.indexOf('tel:') === 0 || href.indexOf('mailto:') === 0) return;
+        if (a.target === '_blank' || a.hasAttribute('download')) return;
+        var url;
+        try { url = new URL(a.href, location.href); } catch (_) { return; }
+        if (url.origin !== location.origin || url.pathname === location.pathname) return;
+        e.preventDefault();
+        de.classList.add('pt-active');
+        requestAnimationFrame(function () {
+          de.classList.add('pt-cover');
+          sessionStorage.setItem('su-page-transition', '1');
+          setTimeout(function () { location.href = url.href; }, 700);
+        });
+      });
+    })();
   </script>
   <script type="module" src="/src/js/main.js"></script>
   <link rel="stylesheet" href="/src/styles/main.css" />

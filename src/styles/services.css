@@ -122,7 +122,11 @@
 /* mobile: native swipe carousel */
 @media (max-width: 860px) {
   .services {
+    /* drop the full-viewport floor: the swipe carousel is short, so 100vh left
+       a large empty gap below the cards on phones */
+    min-height: auto;
     padding-top: clamp(4rem, 8vh, 6rem);
+    padding-bottom: clamp(3rem, 7vh, 5rem);
     overflow: visible;
   }
   .services__head {
