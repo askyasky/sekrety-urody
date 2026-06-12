@@ -57,15 +57,18 @@ const fragment = /* glsl */ `
   void main() {
     vec2 uv = gl_FragCoord.xy / uRes.xy;
     float ar = uRes.x / uRes.y;
+    // never let the horizontal axis collapse on portrait viewports, or the
+    // noise loses all x-variation and renders as a hard vertical seam
+    float arx = max(ar, 1.0);
     vec2 p = uv;
-    p.x *= ar;
+    p.x *= arx;
     // anisotropic stretch for a fabric feel
     p *= vec2(0.7, 1.25);
 
     float t = uTime * 0.04;
 
     vec2 m = uMouse;
-    m.x *= ar;
+    m.x *= arx;
     m *= vec2(0.7, 1.25);
     float md = exp(-distance(p, m) * 2.2) * 0.3;
 

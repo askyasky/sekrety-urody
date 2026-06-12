@@ -69,3 +69,30 @@
   display: inline-block;
   color: var(--muted);
 }
+
+/* On phones the single column makes the right-edge crop collide with the copy.
+   Re-anchor the portrait to the bottom as a full-width, larger backdrop that
+   fades up into the section, with the text stacked cleanly above it. */
+@media (max-width: 768px) {
+  .manifest {
+    align-content: start;
+    min-height: 100vh;
+    padding-top: 7rem;
+    padding-bottom: 0;
+  }
+
+  .manifest__portrait {
+    height: 58vh;
+    width: 100%;
+    left: 0;
+    right: auto;
+    bottom: 0;
+    transform: none;
+    object-fit: cover;
+    object-position: 68% 14%;
+    clip-path: none;
+    opacity: 0.32;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 40%);
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 40%);
+  }
+}
