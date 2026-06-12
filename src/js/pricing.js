@@ -36,7 +36,7 @@ const DATA = [
     ],
   },
   {
-    cat: 'Peelingi Theo Marvee',
+    cat: 'Zabiegi Theo Marvee',
     items: [
       ['Ferulage', '240 zł'],
       ['Shikimic', '230 zł'],

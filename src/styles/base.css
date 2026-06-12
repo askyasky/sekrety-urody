@@ -64,7 +64,7 @@ button { font: inherit; background: none; border: 0; color: inherit; cursor: poi
 .btn--solid:hover { background: #DC1B94; }
 
 .btn--ghost {
-  border: 1px solid color-mix(in srgb, var(--champagne) 35%, transparent);
+  border: 1px solid rgba(239, 230, 216, 0.55);
   color: var(--champagne);
 }
 .btn--ghost:hover { border-color: var(--champagne); }

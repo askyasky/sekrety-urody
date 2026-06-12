@@ -133,13 +133,31 @@
   border-top: 1px solid color-mix(in srgb, var(--champagne) 10%, transparent);
 }
 
-.footer__brand, .footer__copy { position: relative; z-index: 1; }
+.footer__brand, .footer__meta { position: relative; z-index: 1; }
 
 .footer__brand {
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
 }
+
+.footer__meta {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.footer__social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+  color: color-mix(in srgb, var(--champagne) 72%, transparent);
+  transition: color 0.3s var(--ease-out);
+}
+
+.footer__social:hover { color: var(--magenta); }
 
 .footer__mark { width: 16px; height: 36px; }
 
@@ -158,4 +176,5 @@
 @media (max-width: 860px) {
   .contact__grid { grid-template-columns: 1fr; }
   .contact__big-text { white-space: normal; }
+  .footer__meta { flex-direction: column; align-items: flex-start; gap: 0.7rem; }
 }
